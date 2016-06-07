@@ -613,11 +613,15 @@ NAVLINKS = [
 	{campus:"other", section:"/studentservices/", name:"Student Activities", url:"/studentactivities/"}
 ]
 
-  def generate_html(campus, path)
+  def generate_html(campus, records)
     builder.build_ul do
-      builder.build_li do
-        builder.build_link(campus, path)
+      links = ""
+      records.each do |record|
+        links << builder.build_li do
+          builder.build_link(record[:name], record[:url])
+        end
       end
+      links
     end
   end
 
