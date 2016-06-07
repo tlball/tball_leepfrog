@@ -20,5 +20,25 @@ describe HtmlBuilder do
       end
     end
   end
+
+  context "#build_li" do
+    context "given a string" do
+      it "returns that string surrounded by li tags" do
+        builder = HtmlBuilder.new
+        li = builder.build_li do
+          "I'm in a list item!"
+        end
+        expect(li).to eq("<li>I'm in a list item!</li>")
+      end
+    end
+
+    context "not given a block" do
+      it "returns that string surrounded by li tags" do
+        builder = HtmlBuilder.new
+        li = builder.build_li
+        expect(li).to eq("<li></li>")
+      end
+    end
+  end
 end
 
