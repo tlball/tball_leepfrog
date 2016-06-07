@@ -2,32 +2,6 @@ require "./navlinks"
 
 RSpec.describe Navlinks do
   describe "#generate_html" do
-    it "returns a string" do
-      records = [
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Arts & Sciences", url:"/aboutjwu/academicdirectories/artsandsciences/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Business", url:"/aboutjwu/academicdirectories/business/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Culinary Arts", url:"/aboutjwu/academicdirectories/culinaryarts/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Hospitality", url:"/aboutjwu/academicdirectories/hospitality/"}
-      ]
-      navlinks = Navlinks.new
-      html = navlinks.generate_html("other", records)
-      expect(html).to be_a(String)
-    end
-
-    it "returns an unordered list" do
-      records = [
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Arts & Sciences", url:"/aboutjwu/academicdirectories/artsandsciences/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Business", url:"/aboutjwu/academicdirectories/business/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Culinary Arts", url:"/aboutjwu/academicdirectories/culinaryarts/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Hospitality", url:"/aboutjwu/academicdirectories/hospitality/"}
-      ]
-      navlinks = Navlinks.new
-      html = navlinks.generate_html("other", records)
-      puts html
-      expect(html).to start_with("<ul>")
-      expect(html).to end_with("</ul>")
-    end
-
     it "returns a properly nested unordered list" do
       # This is from the sample data for "other" nav for /aboutjwu/academicdirectories/
       # Changed '&amp;' to an '&'
