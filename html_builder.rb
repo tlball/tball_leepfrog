@@ -1,16 +1,19 @@
 class HtmlBuilder
 
   def build_ul(&block)
-    # maybe better exception handling, but this manages the case
-    # where no block is passed.
-    inner_html = block.call if block
-    "<ul>#{inner_html}</ul>"
+    build_wrapper('ul', &block)
   end
 
   def build_li(&block)
+    build_wrapper('li', &block)
+  end
+
+  private
+  def build_wrapper(tag, &block)
+    # want to consider what should and should not be allowed to be passed in as a 'tag'
     # maybe better exception handling, but this manages the case
     # where no block is passed.
     inner_html = block.call if block
-    "<li>#{inner_html}</li>"
+    "<#{tag}>#{inner_html}</#{tag}>"
   end
 end
