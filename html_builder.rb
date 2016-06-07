@@ -8,6 +8,10 @@ class HtmlBuilder
     build_wrapper('li', &block)
   end
 
+  def build_link(text, url)
+    "<a href='#{url}'>#{text}</a>"
+  end
+
   private
   def build_wrapper(tag, &block)
     # want to consider what should and should not be allowed to be passed in as a 'tag'
