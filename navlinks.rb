@@ -1,3 +1,4 @@
+require './html_builder'
 class Navlinks
 
 NAVLINKS = [
@@ -612,7 +613,20 @@ NAVLINKS = [
 	{campus:"other", section:"/studentservices/", name:"Student Activities", url:"/studentactivities/"}
 ]
 
+  def generate_html(campus, path)
+    builder.build_ul do
+      builder.build_li do
+        builder.build_link(campus, path)
+      end
+    end
+  end
+
   def find_records(campus, path)
     NAVLINKS.select { |link| link[:campus] == campus && link[:section] == path }
+  end
+
+  private
+  def builder
+    @builder ||= HtmlBuilder.new
   end
 end

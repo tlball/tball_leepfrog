@@ -1,6 +1,22 @@
 require "./navlinks"
 
 RSpec.describe Navlinks do
+  describe "#generate_html" do
+    it "returns a string" do
+      navlinks = Navlinks.new
+      html = navlinks.generate_html("other", "/")
+      expect(html).to be_a(String)
+    end
+
+    it "returns an unordered list" do
+      navlinks = Navlinks.new
+      html = navlinks.generate_html("other", "/")
+      puts html
+      expect(html).to start_with("<ul>")
+      expect(html).to end_with("</ul>")
+    end
+  end
+
   describe '#find_records' do
     context 'given a campus and path' do
       it 'returns the correct list of records' do
