@@ -613,16 +613,25 @@ NAVLINKS = [
 	{campus:"other", section:"/studentservices/", name:"Student Activities", url:"/studentactivities/"}
 ]
 
-  def generate_html(campus, records)
-    builder.build_ul do
-      links = ""
+  def generate_html(campus, path_pieces)
+    records = find_records(campus, path_pieces.first)
+    html = builder.build_ul do
+      list_items = ""
       records.each do |record|
-        links << builder.build_li do
-          builder.build_link(record[:name], record[:url])
+        links = ""
+        list_items << builder.build_li do
+          links <<  builder.build_link(record[:name], record[:url])
+          if path_pieces.include?(record[:url])
+            links << generate_html(campus, path_pieces[1..-1])
+          else
+            links << ""
+          end
+          links
         end
       end
-      links
+      list_items
     end
+    html
   end
 
   def find_records(campus, path)
@@ -643,5 +652,4 @@ NAVLINKS = [
   def builder
     @builder ||= HtmlBuilder.new
   end
-
 end
