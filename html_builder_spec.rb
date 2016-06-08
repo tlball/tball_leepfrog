@@ -46,7 +46,7 @@ describe HtmlBuilder do
       it "returns a proper anchor tag" do
         builder = HtmlBuilder.new
         link = builder.build_link("Click me!", "/some/awesome/place")
-        expect(link).to eq("<a href='/some/awesome/place'>Click me!</a>")
+        expect(link).to eq("<a href=\"/some/awesome/place\">Click me!</a>")
       end
     end
   end

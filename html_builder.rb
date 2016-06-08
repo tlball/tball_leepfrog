@@ -9,7 +9,7 @@ class HtmlBuilder
   end
 
   def build_link(text, url)
-    "<a href='#{url}'>#{text}</a>"
+    "<a href=\"#{url}\">#{text}</a>"
   end
 
   private
