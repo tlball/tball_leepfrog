@@ -1,4 +1,5 @@
 require './html_builder'
+require 'cgi'
 class Navlinks
 
 NAVLINKS = [
@@ -620,7 +621,7 @@ NAVLINKS = [
       records.each do |record|
         links = ""
         list_items << builder.build_li do
-          links <<  builder.build_link(record[:name], record[:url])
+          links <<  builder.build_link(CGI.escapeHTML(record[:name]), record[:url])
           if path_pieces.include?(record[:url])
             links << generate_html(campus, path_pieces[1..-1])
           else
