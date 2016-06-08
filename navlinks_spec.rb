@@ -3,7 +3,10 @@ require "./navlinks"
 RSpec.describe Navlinks do
   describe "create_navlinks" do
     it "returns the proper navlinks html for the campus and path" do
-
+      proper_html = '<ul><li><a href="/">Catalog Home</a></li><li><a href="/aboutjwu/">About JWU</a><ul><li><a href="/aboutjwu/letterfromthepresident/">Letter from President</a></li><li><a href="/aboutjwu/historyofjwu/">History of JWU</a></li><li><a href="/aboutjwu/missionandpurposes/">Mission &amp; Principles</a></li><li><a href="/aboutjwu/campuses/">Campus Facilities</a></li><li><a href="/aboutjwu/accreditations/">Accreditations</a></li><li><a href="/aboutjwu/affiliations/">Affiliations</a></li><li><a href="/aboutjwu/nondiscriminationnotice/">Nondiscrimination Notice</a></li><li><a href="/aboutjwu/corporationandtrustees/">Corporation &amp; Trustees</a></li><li><a href="/aboutjwu/universityleadership/">University Leadership</a></li><li><a href="/aboutjwu/academicdirectories/">Academic Directories</a><ul><li><a href="/aboutjwu/academicdirectories/artsandsciences/">Arts &amp; Sciences</a></li><li><a href="/aboutjwu/academicdirectories/business/">Business</a></li><li><a href="/aboutjwu/academicdirectories/culinaryarts/">Culinary Arts</a></li><li><a href="/aboutjwu/academicdirectories/graduate/">Graduate School</a></li><li><a href="/aboutjwu/academicdirectories/hospitality/">Hospitality</a></li><li><a href="/aboutjwu/academicdirectories/technology/">Technology</a></li></ul></li><li><a href="/aboutjwu/departmentdirectories/">Department Directories</a></li></ul></li><li><a href="/programsofstudy/">Programs of Study</a></li><li><a href="/academicinformation/">Academic Information</a></li><li><a href="/admissions/">Admissions</a></li><li><a href="/financingyourdegree/">Financing Your Degree</a></li><li><a href="/studentservices/">Student Services</a></li></ul>'
+      navlinks = Navlinks.new
+      html = navlinks.create_navlinks("university", '/aboutjwu/academicdirectories/')
+      expect(html).to eq(proper_html)
     end
   end
 

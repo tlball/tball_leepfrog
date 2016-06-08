@@ -5,6 +5,10 @@ require './navlink_records'
 class Navlinks
   include NavlinkRecords
 
+  def create_navlinks(campus, path)
+    generate_html(campus, breakdown_path(path))
+  end
+
   def generate_html(campus, path_pieces)
     records = find_records(campus, path_pieces.first)
     html = builder.build_ul do
