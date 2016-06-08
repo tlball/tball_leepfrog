@@ -4,16 +4,11 @@ RSpec.describe Navlinks do
   describe "#generate_html" do
     it "returns a properly nested unordered list" do
       # This is from the sample data for "other" nav for /aboutjwu/academicdirectories/
-      # Changed '&amp;' to an '&'
-      proper_html = "<ul><li><a href='/aboutjwu/academicdirectories/artsandsciences/'>Arts & Sciences</a></li><li><a href='/aboutjwu/academicdirectories/business/'>Business</a></li><li><a href='/aboutjwu/academicdirectories/culinaryarts/'>Culinary Arts</a></li><li><a href='/aboutjwu/academicdirectories/hospitality/'>Hospitality</a></li></ul>"
-      records = [
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Arts & Sciences", url:"/aboutjwu/academicdirectories/artsandsciences/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Business", url:"/aboutjwu/academicdirectories/business/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Culinary Arts", url:"/aboutjwu/academicdirectories/culinaryarts/"},
-        {campus:"other", section:"/aboutjwu/academicdirectories/", name:"Hospitality", url:"/aboutjwu/academicdirectories/hospitality/"}
-      ]
+      # Removed any tag attributes aside from "href"
+      # Can build out HtmlBuilder to accept attributes
+      proper_html = '<ul><li><a href="/">Catalog Home</a></li><li><a href="/aboutjwu/">About JWU</a><ul><li><a href="/aboutjwu/letterfromthepresident/">Letter from President</a></li><li><a href="/aboutjwu/historyofjwu/">History of JWU</a></li><li><a href="/aboutjwu/missionandpurposes/">Mission & Principles</a></li><li><a href="/aboutjwu/campuses/">Campus Facilities</a></li><li><a href="/aboutjwu/accreditations/">Accreditations</a></li><li><a href="/aboutjwu/affiliations/">Affiliations</a></li><li><a href="/aboutjwu/nondiscriminationnotice/">Nondiscrimination Notice</a></li><li><a href="/aboutjwu/corporationandtrustees/">Corporation & Trustees</a></li><li><a href="/aboutjwu/universityleadership/">University Leadership</a></li><li><a href="/aboutjwu/academicdirectories/">Academic Directories</a><ul><li><a href="/aboutjwu/academicdirectories/artsandsciences/">Arts & Sciences</a></li><li><a href="/aboutjwu/academicdirectories/business/">Business</a></li><li><a href="/aboutjwu/academicdirectories/culinaryarts/">Culinary Arts</a></li><li><a href="/aboutjwu/academicdirectories/hospitality/">Hospitality</a></li></ul></li><li><a href="/aboutjwu/departmentdirectories/">Department Directories</a></li></ul></li><li><a href="/programsofstudy/">Programs of Study</a></li><li><a href="/academicinformation/">Academic Information</a></li><li><a href="/admissions/">Admissions</a></li><li><a href="/financingyourdegree/">Financing Your Degree</a></li><li><a href="/studentservices/">Student Services</a></li></ul>'
       navlinks = Navlinks.new
-      html = navlinks.generate_html("other", records)
+      html = navlinks.generate_html("other", ['/', '/aboutjwu/', '/aboutjwu/academicdirectories/'])
       expect(html).to eq(proper_html)
     end
   end
