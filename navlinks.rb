@@ -9,6 +9,8 @@ class Navlinks
     generate_html(campus, breakdown_path(path))
   end
 
+  private
+
   def generate_html(campus, path_pieces)
     records = find_records(campus, path_pieces.first)
     html = builder.build_ul do
@@ -44,7 +46,6 @@ class Navlinks
     path_pieces
   end
 
-  private
   def builder
     @builder ||= HtmlBuilder.new
   end
