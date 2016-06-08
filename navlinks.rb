@@ -629,8 +629,19 @@ NAVLINKS = [
     NAVLINKS.select { |link| link[:campus] == campus && link[:section] == path }
   end
 
+  def breakdown_path(path)
+    path_pieces = []
+    index = path.index('/')
+    until index.nil? do
+      path_pieces << path[0, index + 1]
+      index = path.index('/', index + 1)
+    end
+    path_pieces
+  end
+
   private
   def builder
     @builder ||= HtmlBuilder.new
   end
+
 end
