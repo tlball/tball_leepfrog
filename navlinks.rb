@@ -616,7 +616,7 @@ NAVLINKS = [
   def generate_html(campus, path_pieces)
     records = find_records(campus, path_pieces.first)
     html = builder.build_ul do
-      list_items = ""
+      list_items = path_pieces.first == "/" ? root_link : ""
       records.each do |record|
         links = ""
         list_items << builder.build_li do
@@ -651,5 +651,11 @@ NAVLINKS = [
   private
   def builder
     @builder ||= HtmlBuilder.new
+  end
+
+  def root_link
+    builder.build_li do
+      builder.build_link("Catalog Home", "/")
+    end
   end
 end
